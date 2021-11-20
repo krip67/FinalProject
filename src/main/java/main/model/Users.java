@@ -9,7 +9,6 @@ import java.util.Date;
 @Table(name = "users")
 public class Users
 {
-
     private int id;
     private byte isModerator;
     private Date regTime;
@@ -17,7 +16,6 @@ public class Users
     private String email;
     private String password;
     private String code;
-
     private String photo;
 
     @Id

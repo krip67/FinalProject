@@ -9,11 +9,12 @@ public class Posts
 {
     private int id;
     private byte isActive;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "moderation_status", nullable = false, columnDefinition = "enum")
     private ModerationStatus moderationStatus;
     private int moderatorId;
-    private int userId;
+    private Users user;
     private Date time;
     private String title;
     private String text;
@@ -44,7 +45,8 @@ public class Posts
         this.moderationStatus = moderationStatus;
     }
 
-    @Column(name = "moderator_id")
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "users_id")
     public int getModeratorId() {
         return moderatorId;
     }
@@ -52,12 +54,13 @@ public class Posts
         this.moderatorId = moderatorId;
     }
 
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
-        return userId;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
+    public Users getUser() {
+        return user;
     }
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Column(nullable = false)
