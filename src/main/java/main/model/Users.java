@@ -1,9 +1,11 @@
 package main.model;
 
-import org.hibernate.type.TextType;
+
 
 import javax.persistence.*;
+
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +19,8 @@ public class Users
     private String password;
     private String code;
     private String photo;
+    @OneToMany (mappedBy="moderatorId", fetch=FetchType.EAGER)
+    private List<Posts> moderatedPosts;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
