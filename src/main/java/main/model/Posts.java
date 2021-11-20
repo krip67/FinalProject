@@ -2,6 +2,7 @@ package main.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "posts")
@@ -19,6 +20,11 @@ public class Posts
     private String title;
     private String text;
     private int viewCount;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tag2post",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "tag_id")})
+    private List<Tags> tagsList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
