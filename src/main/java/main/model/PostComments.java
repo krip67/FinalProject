@@ -9,8 +9,8 @@ public class PostComments
 {
     private int id;
     private int parentId;
-    private int postId;
-    private int userId;
+    private Posts postId;
+    private Users userId;
     private Date time;
     private String text;
 
@@ -31,19 +31,21 @@ public class PostComments
         this.parentId = parentId;
     }
 
-    @Column(name = "post_id", nullable = false)
-    public int getPostId() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "posts_id")
+    public Posts getPostId() {
         return postId;
     }
-    public void setPostId(int postId) {
+    public void setPostId(Posts postId) {
         this.postId = postId;
     }
 
-    @Column(name = "user_id", nullable = false)
-    public int getUserId() {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id")
+    public Users getUserId() {
         return userId;
     }
-    public void setUserId(int userId) {
+    public void setUserId(Users userId) {
         this.userId = userId;
     }
 
